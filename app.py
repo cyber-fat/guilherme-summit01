@@ -9,6 +9,16 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
+
+# Botão na barra lateral para limpar memória
+with st.sidebar:
+    if st.button("🔄 Atualizar Cérebro (Limpar Cache)"):
+        st.cache_resource.clear()
+        st.success("Memória limpa! Recarregando...")
+        time.sleep(1)
+        st.rerun()
+
+
 # ============================
 # CONFIGURAÇÃO DA PÁGINA
 # ============================
