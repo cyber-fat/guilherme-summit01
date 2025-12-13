@@ -107,7 +107,7 @@ if prompt := st.chat_input("Digite sua pergunta..."):
             # B. Busca Robusta (High Recall)
             docs_encontrados = []
             for p in variacoes:
-                docs = vectorstore.similarity_search(p, k=10)
+                docs = vectorstore.similarity_search(p, k=25)
                 docs_encontrados.extend(docs)
             
             # Deduplicação
@@ -120,16 +120,16 @@ if prompt := st.chat_input("Digite sua pergunta..."):
             template_resposta = """
             Você é um assistente especialista no Summit 'Explore a IA na Educação'.
             
-            GLOSSÁRIO OBRIGATÓRIO:
+            GLOSSÁRIO:
             - "Evento", "Conferência" = "Summit Explore a IA na Educação".
             - "Palestrantes" = Use a LISTA MESTRA prioritariamente.
             
-            DIRETRIZES RÍGIDAS:
-            1. Se encontrar a "Lista Mestra" ou "Lista Oficial" no contexto, cite TODOS os nomes listados nela. NÃO RESUMA. NÃO EXCLUA NINGUÉM.
-            2. Se a lista estiver dividida em "Parte 1" e "Parte 2", junte ambas e exiba a lista completa.
-            3. A lista deve ser numerada ou em bullet points.
-            4. Se não souber, diga que não sabe.
-
+            DIRETRIZES DE RESPOSTA (RÍGIDAS):
+            1. Você deve listar TODOS os nomes encontrados nos documentos de "Lista Mestra".
+            2. NÃO pule nomes. NÃO resuma. A lista deve ser exaustiva.
+            3. Se houver múltiplas partes (ex: Parte 1, Parte 2), combine-as em uma única lista alfabética.
+            4. Se a lista parecer ter cerca de 50-60 nomes, liste todos eles.
+            
             CONTEXTO:
             {context}
 
