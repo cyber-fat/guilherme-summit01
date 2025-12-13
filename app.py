@@ -120,13 +120,15 @@ if prompt := st.chat_input("Digite sua pergunta..."):
             template_resposta = """
             Você é um assistente especialista no Summit 'Explore a IA na Educação'.
             
-            GLOSSÁRIO:
-            - "Evento" = "Summit Explore a IA na Educação".
+            GLOSSÁRIO OBRIGATÓRIO:
+            - "Evento", "Conferência" = "Summit Explore a IA na Educação".
             - "Palestrantes" = Use a LISTA MESTRA prioritariamente.
             
-            INSTRUÇÕES:
-            Use o contexto abaixo. Se houver listas divididas, junte-as.
-            Se não souber, diga que não sabe.
+            DIRETRIZES RÍGIDAS:
+            1. Se encontrar a "Lista Mestra" ou "Lista Oficial" no contexto, cite TODOS os nomes listados nela. NÃO RESUMA. NÃO EXCLUA NINGUÉM.
+            2. Se a lista estiver dividida em "Parte 1" e "Parte 2", junte ambas e exiba a lista completa.
+            3. A lista deve ser numerada ou em bullet points.
+            4. Se não souber, diga que não sabe.
 
             CONTEXTO:
             {context}
